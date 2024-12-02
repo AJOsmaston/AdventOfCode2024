@@ -35,25 +35,25 @@ def is_report_safe(report):
             continue
 
         if int_item == previous_item:
-            return 0
+            return False
         if int_item > previous_item:
             is_increasing = True
         if int_item < previous_item:
             is_decreasing = True
 
         if is_decreasing and is_increasing:
-            return 0
+            return False
         
         difference = abs(int_item - previous_item)
         if difference > safe_change:
-            return 0
+            return False
         previous_item = int_item
-    return 1
+    return True
 
 def is_report_safeish(report):
     for index, _ in enumerate(report.split(" ")):
         new_report = report.split(" ")
         new_report.pop(index)
         if is_report_safe(" ".join(new_report)):
-            return 1
-    return 0
+            return True
+    return False
