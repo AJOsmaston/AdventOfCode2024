@@ -19,8 +19,7 @@ def RnRp2(file_data):
 
 def is_report_safe(report):
     items_in_report = report.split(" ")
-    is_decreasing = False
-    is_increasing = False
+    is_decreasing = is_increasing = False
     safe_change = 3
     previous_item = None
 
@@ -40,8 +39,7 @@ def is_report_safe(report):
         if is_decreasing and is_increasing:
             return False
         
-        difference = abs(int_item - previous_item)
-        if difference > safe_change:
+        if abs(int_item - previous_item) > safe_change:
             return False
         previous_item = int_item
     return True
