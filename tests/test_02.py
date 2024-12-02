@@ -2,8 +2,8 @@ from file_helpers import file_helper
 from src import day_02
 
 
-file_data = file_helper.get_data("2", test=True)
-actual_data = file_helper.get_data("2")
+file_data = file_helper.get_line_list_from_data("2", test=True)
+actual_data = file_helper.get_line_list_from_data("2")
 
 def test_02_example():
     assert day_02.RedNosedReports(file_data) == 2

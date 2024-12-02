@@ -1,7 +1,5 @@
 def Historian_Hysteria(file_data):
-    line_pairs = file_data.split("\n")
-
-    leftlist, rightlist = get_both_lists(line_pairs)
+    leftlist, rightlist = get_both_lists(file_data)
 
     leftlist.sort()
     rightlist.sort()
@@ -14,8 +12,7 @@ def Historian_Hysteria(file_data):
     return sum
     
 def part_two(file_data):
-    line_pairs = file_data.split("\n")
-    leftlist, rightlist = get_both_lists(line_pairs)
+    leftlist, rightlist = get_both_lists(file_data)
     individual_items = set(leftlist)
     freq = {}
     for item in individual_items:

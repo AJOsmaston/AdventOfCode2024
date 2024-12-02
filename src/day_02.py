@@ -1,17 +1,13 @@
 def RedNosedReports(file_data):
-    reports = file_data.split("\n")
-
     total_safe = 0
-    for report in reports:
+    for report in file_data:
         total_safe += is_report_safe(report)
 
     return total_safe
 
 def RnRp2(file_data):
-    reports = file_data.split("\n")
-
     total_safe = 0
-    for report in reports:
+    for report in file_data:
         base_safe = is_report_safe(report)
         total_safe += base_safe
         if base_safe:
