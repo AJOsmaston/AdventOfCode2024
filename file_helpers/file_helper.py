@@ -1,6 +1,10 @@
 import os
 
 def get_line_list_from_data(day, test=False):
+    data = get_data(day, test)
+    return data.split("\n")
+    
+def get_data(day, test=False):
     if len(str(day)) == 1:
         day = "0" + str(day)
     
@@ -11,4 +15,4 @@ def get_line_list_from_data(day, test=False):
     file_path = os.path.join(os.getcwd(), "data", file_name)
 
     with open(file_path) as file:
-        return file.read().split("\n")
+        return file.read()
