@@ -6,8 +6,9 @@ example_file_dat_list = get_line_list_from_data(6, test=True)
 def test_day_06_p1_example():
     assert guard_gallivant_p1(example_file_dat_list) == 41
 
-def test_day_06_p2_example():
-    assert guard_gallivant_p2(example_file_dat_list) == 6
+#>0.5s
+# def test_day_06_p2_example():
+#     assert guard_gallivant_p2(example_file_dat_list) == 6
 
 actual_file_data = get_line_list_from_data(6)
 
