@@ -15,7 +15,6 @@ class Rule:
         return f"{self.first_item}>{self.second_item}"
     def __hash__(self):
         return hash(str(self))
-        
 
 def print_queue_p1(file_list):
     rules, manuals = get_rules_and_manuals(file_list)
