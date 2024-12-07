@@ -1,5 +1,7 @@
 from src.day_04 import Coord
 import copy
+from concurrent.futures import ProcessPoolExecutor, as_completed
+from tqdm import tqdm
 
 class Guard:
     def __init__(self, position, image):
@@ -24,8 +26,37 @@ def guard_gallivant_p1(file_list):
     visited_coords = travel(guard, file_list, block_coords, guard_chars)
     return len(set(visited_coords.keys()))
 
+def process_coord(args):
+    file_list, guard_chars, visited_coord = args  # Unpack arguments
+    new_guard, new_block_coords = setup_initial_board(file_list, guard_chars)
+    new_block_coords.append(visited_coord)
+    try:
+        travel(new_guard, file_list, new_block_coords, guard_chars)
+        return 0  # Success
+    except Exception:
+        return 1  # Failure
+
 def guard_gallivant_p2(file_list):
-    pass
+    # Initialize the board and calculate initial states
+    guard, block_coords = setup_initial_board(file_list, guard_chars)
+    visited_coords = travel(guard, file_list, block_coords, guard_chars)
+
+    # Prepare the list of arguments for each task
+    visited_coords_keys = list(visited_coords.keys())
+    tasks = [(file_list, guard_chars, visited_coord) for visited_coord in visited_coords_keys]
+
+    # Use ProcessPoolExecutor with progress tracking
+    count = 0
+    with ProcessPoolExecutor() as executor:
+        # Create a progress bar
+        with tqdm(total=len(tasks), desc="Processing") as progress:
+            futures = [executor.submit(process_coord, task) for task in tasks]
+            for future in as_completed(futures):
+                count += future.result()  # Aggregate results
+                progress.update(1)       # Update the progress bar
+
+    print(f"Completed processing. Total count of exceptions: {count - 1}")
+    return count
 
 def setup_initial_board(file_list, guard_chars):
     block_coords = []
