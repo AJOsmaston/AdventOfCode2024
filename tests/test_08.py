@@ -12,8 +12,8 @@ def test_08_actual():
     assert  day_08_actual < 413
     assert day_08_actual == 409
 
-# def test_08b_example():
-#     assert day_08.RnRp2(file_data) == 4
+def test_08b_example():
+    assert day_08.resonant_collinearity_p2(file_data) == 34
 
-# def test_08b_actual():
-#     assert day_08.RnRp2(actual_data) == 674
+def test_08b_actual():
+    assert day_08.resonant_collinearity_p2(actual_data) == 1308
