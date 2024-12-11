@@ -15,4 +15,4 @@ def test_day_10_p2_example():
     assert day_10.hoof_it_p2(file_data) == 81
 
 def test_day_10_p2_actual():
-    assert day_10.hoof_it_p2(actual_data) == 0
+    assert day_10.hoof_it_p2(actual_data) == 1086
